@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "Hash": "rFHNcV6xhb0WasnzH+5AykvYYx4H1CN+lCZZTw444G8=",
+  "Source": "ToDoCoreWebAPI",
+  "BasePath": "_content/ToDoCoreWebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "ToDoCoreWebAPI\\wwwroot",
+      "Source": "ToDoCoreWebAPI",
+      "ContentRoot": "C:\\Users\\VikrantKadamNanded\\Desktop\\SwabhavRepoHyd\\The_Project\\ToDoCoreWebAPI\\ToDoCoreWebAPI\\wwwroot\\",
+      "BasePath": "_content/ToDoCoreWebAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\VikrantKadamNanded\\Desktop\\SwabhavRepoHyd\\The_Project\\ToDoCoreWebAPI\\ToDoCoreWebAPI\\wwwroot\\Uploads\\Image\\noimage.png",
+      "SourceId": "ToDoCoreWebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\VikrantKadamNanded\\Desktop\\SwabhavRepoHyd\\The_Project\\ToDoCoreWebAPI\\ToDoCoreWebAPI\\wwwroot\\",
+      "BasePath": "_content/ToDoCoreWebAPI",
+      "RelativePath": "Uploads/Image/noimage.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Uploads\\Image\\noimage.png"
+    }
+  ]
+}

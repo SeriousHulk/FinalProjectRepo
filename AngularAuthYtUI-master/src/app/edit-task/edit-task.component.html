@@ -1,0 +1,50 @@
+<div class="outer">
+    <div class="container">
+      <div class="row">
+        <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+          <div class="panel border bg-white">
+            <div class="panel-heading">
+              <h3 class="pt-3 font-weight-bold">Edit Task</h3>
+            </div>
+            <div class="panel-body p-3">
+              <form (ngSubmit)="updateTask()">
+                <!-- Task Name -->
+<div class="form-group pt-3">
+    <div class="input-field">
+      <span class="fa fa-tasks p-2"></span>
+      <input type="text" id="taskName" [(ngModel)]="task.name" name="taskName" placeholder="Task Name" required>
+    </div>
+  </div>
+  
+  <!-- Task Description -->
+  <div class="form-group pt-3">
+    <div class="input-field">
+      <span class="fa fa-info-circle p-2"></span>
+      <textarea id="taskDescription" [(ngModel)]="task.description" name="taskDescription" placeholder="Task Description" required></textarea>
+    </div>
+  </div>
+  
+  <!-- Task Category -->
+<div class="form-group pt-3">
+    <div class="input-field">
+      <span class="fa fa-list p-2"></span>
+      <select [(ngModel)]="task.taskCategory" name="taskCategory" required>
+        <option value="">Select a category</option>
+        <option *ngFor="let category of categoryOptions" [value]="category">{{ category }}</option>
+        <option value="other">Other</option>
+      </select>
+      <input *ngIf="task.taskCategory === 'other'" type="text" [(ngModel)]="customCategory" name="customCategory" placeholder="Enter Custom Category">
+    </div>
+  </div>
+  
+  
+  <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Update Task</button>
+  
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

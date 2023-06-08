@@ -1,0 +1,161 @@
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">Hello <h3>{{userName}}</h3></a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search"> -->
+  <div class="navbar-nav">
+      <div class="nav-item text-nowrap">
+          <a style="background: red;
+          color: #fff;
+          border-radius: 4px;
+          margin: 10px;" class="nav-link px-3 cursor-pointer" (click)="logout()">Sign out</a>
+      </div>
+  </div>
+</header>
+
+<div class="container-fluid">
+  <div class="row">
+      <ng-container *ngIf="role === 'Admin'">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+          <div class="position-sticky pt-3 sidebar-sticky">
+              <ul class="nav flex-column">
+                  <li class="nav-item">
+                      <a class="nav-link" href="#">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-text-bottom" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>                          All Users
+                      </a>
+                  </li>
+              </ul>
+              <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                  <thead>
+                    <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Deactivate</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of users; let i = index">
+                      <td>{{ i+1 }}</td>
+                      <td>{{ user.name }}</td>
+                      <td>
+                        <input type="checkbox">
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+              </div>
+              
+          </div>
+      </nav>
+      </ng-container>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="chartjs-size-monitor">
+              <div class="chartjs-size-monitor-expand">
+                  <div class=""></div>
+              </div>
+              <div class="chartjs-size-monitor-shrink">
+                  <div class=""></div>
+              </div>
+          </div>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <ng-container *ngIf="role === 'Admin'">
+                <h1 class="h2">Admin Dashboard</h1>
+            </ng-container>  
+            <ng-container *ngIf="role === 'User'">
+                <h1 class="h2">User Dashboard</h1>
+            </ng-container> 
+            <button type="button" class="btn btn-sm btn-primary" (click)="goToAddTask()">Add Task</button>
+          </div>
+          
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col"></th>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Category</th>
+                <th scope="col">Status</th>
+                <th scope="col">Actions</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let task of tasks; let i = index">
+                <ng-container *ngIf="task.bookmark">
+                  <td>
+                    <i class="fas fa-heart" (click)="toggleBookmark(task)"></i>
+                  </td>
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ task.name }}</td>
+                  <td>{{ task.description }}</td>
+                  <td>{{ task.taskCategory }}</td>
+                  <td>{{ task.isCompleted }}</td>
+                  <td>
+                    <button (click)="editTask(task)">Edit</button>
+                    <button (click)="deleteTask(task)">Delete</button>
+                  </td>
+                  <td>
+                    <button (click)="toggleShowSubtasks(task.id)">Show Subtasks</button>
+                  </td>
+                  <td>
+                    <a [routerLink]="'add-subtask/' + task.id" style="color: green; font-weight: bold;">
+                      <i class="fa-solid fa-plus"></i>
+                    </a>
+                  </td>
+                </ng-container>
+              </tr>
+              <tr *ngFor="let task of tasks; let i = index">
+                <ng-container *ngIf="!task.bookmark">
+                  <td>
+                    <i class="far fa-heart" (click)="toggleBookmark(task)"></i>
+                  </td>
+                  <td>{{ i + 1 }}</td>
+                  <td>{{ task.name }}</td>
+                  <td>{{ task.description }}</td>
+                  <td>{{ task.taskCategory }}</td>
+                  <td>{{ task.isCompleted }}</td>
+                  <td>
+                    <button (click)="editTask(task)">Edit</button>
+                    <button (click)="deleteTask(task)">Delete</button>
+                  </td>
+                  <td>
+                    <button (click)="toggleShowSubtasks(task.id)">Show Subtasks</button>
+                  </td>
+                  <td>
+                    <a [routerLink]="'add-subtask/' + task.id" style="color: green; font-weight: bold;">
+                      <i class="fa-solid fa-plus"></i>
+                    </a>
+                  </td>
+                </ng-container>
+              </tr>
+              <tr *ngIf="showSubtasksForTask !== null && isTaskSelected(showSubtasksForTask)">
+                <td colspan="8">
+                  <h4>Subtasks</h4>
+                  <ul>
+                    <li *ngFor="let subtask of getSubtasksForTask(showSubtasksForTask); let j = index">
+                      <span>{{ subtask.name }}</span>
+                      <br>
+                      <span>{{subtask.description}}</span>
+                      <div>
+                        <span><a routerLink="edit-subtask/{{subtask.id}}" style="color: green;"><i class="fas fa-edit"></i></a></span>
+                        <span><a routerLink="delete-subtask/{{subtask.id}}" style="color: Red;"><i class="fa-solid fa-trash"></i></a></span>    
+                      </div>
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              
+            </tbody>
+          </table>
+          
+          
+          
+          
+      </main>
+  </div>
+</div>

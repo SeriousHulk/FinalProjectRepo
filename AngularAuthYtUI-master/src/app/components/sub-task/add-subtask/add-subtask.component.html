@@ -1,0 +1,24 @@
+<div class="panel-heading">
+    <h3 class="pt-3 font-weight-bold">Add SubTask Detail</h3>
+</div>
+<div class="panel-body p-3">
+    <form [formGroup]="addSubTask" (ngSubmit)="onAdd()">
+        <div class="form-group pt-3">
+            <div class="input-field" [class.error]="addSubTask.controls['Name'].dirty && addSubTask.hasError('required','Name')">
+                <span class="fa fa-tasks p-2"></span>
+                <input formControlName="Name" type="text" placeholder="SubTaskName">
+            </div>
+        </div>
+        <small *ngIf="addSubTask.controls['Name'].dirty && addSubTask.hasError('required','Name')" class="text-danger"> *SubTaskName Required</small>
+
+        <div class="form-group pt-3">
+            <div class="input-field" [class.error]="addSubTask.controls['Description'].dirty && addSubTask.hasError('required','Description')">
+                <span class="fa fa-tasks p-2"></span>
+                <input formControlName="Description" type="text" placeholder="SubTask Description">
+            </div>
+        </div>
+        <small *ngIf="addSubTask.controls['Description'].dirty && addSubTask.hasError('required','Description')" class="text-danger"> *SubTask Description Required</small>
+        
+        <button type="submit" class="btn btn-secondary btn-black mt-4 w-100">Save</button>
+    </form>
+</div>

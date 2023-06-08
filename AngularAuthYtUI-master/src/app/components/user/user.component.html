@@ -1,0 +1,36 @@
+<div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <h2>User Details</h2>
+      <!-- Display user details here -->
+      <p>Username: {{ user.username }}</p>
+      <p>Email: {{ user.email }}</p>
+      <p>Role: {{ user.role }}</p>
+      <!-- Add more user details as needed -->
+  
+      <!-- Add any additional user-related information in the sidebar -->
+  
+    </div>
+  
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <h2>Main Tasks</h2>
+      <!-- Loop through main tasks -->
+      <ul>
+        <li *ngFor="let task of tasks">
+          <h4>{{ task.name }}</h4>
+          <p>{{ task.description }}</p>
+          <button (click)="toggleSubtasks(task)">Toggle Subtasks</button>
+          <!-- Display subtasks if the task is expanded -->
+          <ul *ngIf="task.showSubtasks">
+            <li *ngFor="let subtask of task.subtasks">
+              <h5>{{ subtask.name }}</h5>
+              <p>{{ subtask.description }}</p>
+              <!-- Display additional subtask details -->
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
