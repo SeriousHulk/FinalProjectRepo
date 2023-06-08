@@ -141,9 +141,26 @@ export class DashboardComponent implements OnInit {
       () => {
         console.log('Task deleted successfully.');
         this.loadTasks(userId);
+        this.router.navigate(['dashboard']);
       },
       (error: any) => {
+        console.log(error);
         console.error('Error deleting task:', error);
+      }
+    );
+  }
+  deleteSubTask(subTask : Subtask,taskId: number): void {
+    const userId: Guid = Guid.parse(this.auth.getUserId());
+    const subTaskId = subTask.id;
+    this.taskService.deleteSubTask(userId,taskId,subTaskId).subscribe(
+      ()=> {
+        console.log('subtask deleted successfully!');
+        this.loadSubtasks(taskId);
+        this.router.navigate(['dashboard']);
+      },
+      (error: any) => {
+        console.log(error);
+        console.error('Error deleting subTask:', error);
       }
     );
   }

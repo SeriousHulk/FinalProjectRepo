@@ -60,7 +60,7 @@ export class TokenInterceptor implements HttpInterceptor {
       }),
       catchError((err)=>{
         return throwError(()=>{
-          this.toast.warning({detail:"Warning", summary:"Token is expired, Please Login again"});
+          this.toast.warning({detail:"Warning", summary:"You are not Authorized to Login, Contact Admin"});
           this.router.navigate(['login'])
         })
       })

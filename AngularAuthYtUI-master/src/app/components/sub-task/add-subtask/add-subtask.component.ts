@@ -39,9 +39,9 @@ export class AddSubTaskComponent implements OnInit{
         const id = params.get('id');
         console.log("id:", id); 
         if (id) {
-          const userId: Guid = Guid.parse(this.authService.getUserId()); // Provide the appropriate userId value
-          const taskId = Number.parseInt(params.get('id')?? '', 10); // Provide the appropriate taskId value
-          const subTask = this.addSubTask.value; // Get the subTask from the form
+          const userId: Guid = Guid.parse(this.authService.getUserId()); 
+          const taskId = Number.parseInt(params.get('id')?? '', 10); 
+          const subTask = this.addSubTask.value; 
           console.log(subTask);
           this.subTaskService.addSubTask(userId, taskId, subTask)
             .subscribe({

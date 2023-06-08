@@ -6,6 +6,7 @@ import { SubtasksService } from 'src/app/services/subtasks.service';
 import ValidateForm from '../../../Validators/validateForm';
 import { Guid } from 'guid-typescript';
 import { AuthService } from '../../../services/auth.service';
+import { Subtask } from 'src/app/models/subtask.model';
 
 @Component({
   selector: 'app-update-sub-task',
@@ -15,7 +16,10 @@ import { AuthService } from '../../../services/auth.service';
 export class UpdateSubTaskComponent {
   sideNavStatus:boolean=true;
   updateSubTask:FormGroup;
-  public subTaskDetail:any={};
+  public subTaskDetail!:Subtask;
+  public taskId: null | number = null;
+public subTaskId: number | null = null;
+
 
   constructor(private route:ActivatedRoute,private subTaskapi:SubtasksService,private auth: AuthService,private router:Router,
     private fb:FormBuilder,private toast:NgToastService){
@@ -30,14 +34,18 @@ export class UpdateSubTaskComponent {
       {
         next:(params)=>{
           const userId: Guid = Guid.parse(this.auth.getUserId());
-          const id = params.get('id');
-          console.log(id);
-          const taskId = Number.parseInt(params.get('id')?? '', 10); 
+          const subTaskId= params.get('id');
+          this.taskId = Number.parseInt(params.get('id')?? '',10);
+          //this.subTaskId =Number.parseInt(params.get('id')?? '',10);
+          //this.subTaskId = Number.parseInt(params.get('subTaskId')?? '',10);
+          //console.log(Id);
+          //const taskId = Number.parseInt(params.get('id')?? '', 10); 
           const subTask = this.updateSubTask.value;
-          const subTaskId = subTask.id;
-          console.log(subTaskId);
-          if (id){
-            this.subTaskapi.getSubTaskById(id,userId , taskId, subTaskId, subTask)
+          //const subTaskId = Number.parseInt(params.get('id')?? '', 10);
+          console.log(userId );
+          console.log(this.taskId,subTaskId);
+          if (this.subTaskId){
+            this.subTaskapi.getSubTaskById(userId , this.taskId, this.subTaskId, subTask)
             .subscribe({
               next:(response)=>{
                 console.log(response)
@@ -63,12 +71,12 @@ export class UpdateSubTaskComponent {
 
   onUpdate(){
     if(this.updateSubTask.valid){
-    //Perform Logic for UpdateStudent
           const userId: Guid = Guid.parse(this.auth.getUserId());
           //const id = params.get('id');
           const taskId = Number.parseInt(this.route.snapshot.paramMap.get('id') ?? '', 10); 
           const subTask = this.updateSubTask.value;
           const subTaskId = this.subTaskDetail.id;
+          
      this.subTaskapi.updateSubTask(userId, taskId, subTaskId, subTask)
         .subscribe({
           next:(res=>{

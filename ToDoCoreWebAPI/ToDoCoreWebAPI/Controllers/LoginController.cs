@@ -35,11 +35,16 @@ namespace ToDoCoreWebAPI.Controllers
 
             if (user == null)
                 return NotFound(new { Message = "User not found!" });
-
             if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password))
             {
                 return BadRequest(new { Message = "Password is Incorrect" });
             }
+            if (!user.IsActive) 
+            {
+                return Unauthorized(new { Message = "User is not authorized to log in!" });
+            }
+
+            
 
             user.Token = CreateJwt(user);
             var newAccessToken = user.Token;

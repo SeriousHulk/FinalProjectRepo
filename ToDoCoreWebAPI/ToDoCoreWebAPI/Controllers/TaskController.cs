@@ -84,9 +84,9 @@ namespace ToDoCoreWebAPI.Controllers
         }
 
         [HttpDelete("{taskId}")]
-        public IActionResult DeleteTask(int userId, int taskId)
+        public IActionResult DeleteTask(Guid userId, int taskId)
         {
-            var existingTask = _repository.Get().FirstOrDefault(t => t.Id == userId && t.Id == taskId);
+            var existingTask = _repository.Get().FirstOrDefault(t => t.UserId == userId && t.Id == taskId);
             if (existingTask == null)
             {
                 return NotFound();

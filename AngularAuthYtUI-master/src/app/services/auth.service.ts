@@ -3,6 +3,9 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
 import {JwtHelperService} from '@auth0/angular-jwt'
 import { TokenApiDTO  } from '../models/token-api.model';
+import { NgToastService } from 'ng-angular-popup';
+import { tap } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -11,19 +14,28 @@ export class AuthService {
   private baseUrl: string = 'https://localhost:7133/api/v1/Login/';
   private userPayload:any;
   private jwtHelper: JwtHelperService;
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private toastService: NgToastService) {
     this.userPayload = this.decodedToken();
     this.jwtHelper = new JwtHelperService();
-   }
+  }
+  
 
   signUp(userObj: any) {
     return this.http.post<any>(`${this.baseUrl}register`, userObj)
   }
 
 
-  signIn(loginObj : any){
-    return this.http.post<any>(`${this.baseUrl}authenticate`,loginObj)
+  signIn(loginObj: any) {
+    return this.http.post<any>(`${this.baseUrl}authenticate`, loginObj).pipe(
+      tap((response) => {
+        if (!response.success) {
+          this.toastService.error({ detail: 'User is not authorized to log in!', summary: 'Authorization Error',duration:5000 });
+        }
+      })
+    );
   }
+  
+  
 
   signOut(){
     localStorage.clear();

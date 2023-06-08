@@ -40,7 +40,7 @@
                       <td>{{ i+1 }}</td>
                       <td>{{ user.name }}</td>
                       <td>
-                        <input type="checkbox">
+                        <input type="checkbox" [(ngModel)]="!user.isActive">
                       </td>
                     </tr>
                     
@@ -79,9 +79,10 @@
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Category</th>
-                <th scope="col">Status</th>
+                <th scope="col">isCompleted</th>
                 <th scope="col">Actions</th>
                 <th scope="col"></th>
+                <th scope="col">+subTask</th>
               </tr>
             </thead>
             <tbody>
@@ -128,7 +129,7 @@
                   </td>
                   <td>
                     <a [routerLink]="'add-subtask/' + task.id" style="color: green; font-weight: bold;">
-                      <i class="fa-solid fa-plus"></i>
+                      <i class="fa fa-plus"></i>
                     </a>
                   </td>
                 </ng-container>
@@ -136,26 +137,23 @@
               <tr *ngIf="showSubtasksForTask !== null && isTaskSelected(showSubtasksForTask)">
                 <td colspan="8">
                   <h4>Subtasks</h4>
-                  <ul>
-                    <li *ngFor="let subtask of getSubtasksForTask(showSubtasksForTask); let j = index">
-                      <span>{{ subtask.name }}</span>
-                      <br>
-                      <span>{{subtask.description}}</span>
-                      <div>
-                        <span><a routerLink="edit-subtask/{{subtask.id}}" style="color: green;"><i class="fas fa-edit"></i></a></span>
-                        <span><a routerLink="delete-subtask/{{subtask.id}}" style="color: Red;"><i class="fa-solid fa-trash"></i></a></span>    
-                      </div>
-                    </li>
+                  <ul  class="container" >
+                      <li *ngFor="let subtask of getSubtasksForTask(showSubtasksForTask); let j = index">
+                        <span>{{ subtask.name }}</span>
+                        <br>
+                        <span style="color: rgb(64, 56, 56);">{{subtask.description}}</span>
+                        <div>
+                          <button class="fa fa-edit btn btn-secondary" style="color: blanchedalmond;" (click)="deleteSubTask(subtask,showSubtasksForTask)"></button>
+                          <button class="fa fa-trash btn btn-danger" style="color: blanchedalmond;" (click)="deleteSubTask(subtask,showSubtasksForTask)"></button>
+                          <!-- <span><a routerLink="edit-subtask/{{subtask.id}}" style="color: green;"><i class="fas fa-edit"></i></a></span> -->
+                          <!-- <span><a routerLink="delete-subtask/{{subtask.id}}" style="color: Red;"><i class="fa fa-trash"></i></a></span>     -->
+                        </div>
+                      </li>
                   </ul>
                 </td>
               </tr>
-              
             </tbody>
           </table>
-          
-          
-          
-          
       </main>
   </div>
 </div>

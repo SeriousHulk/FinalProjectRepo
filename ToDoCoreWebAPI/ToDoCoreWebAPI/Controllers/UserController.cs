@@ -30,6 +30,7 @@ namespace ToDoCoreWebAPI.Controllers
 
             var userGetDTO = new UserGetDTO
             {
+                Id = id,
                 Name = user.Name,
                 Role = user.Role,
                 IsActive = user.IsActive,
