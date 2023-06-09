@@ -73,20 +73,6 @@ export class DashboardComponent implements OnInit {
   logout(){
     this.auth.signOut();
   }
-  // deactivateUser(user: any): void {
-  //   user.isActive = !user.isActive; // Toggle the isActive property
-  //   const userId: Guid = Guid.parse(this.auth.getUserId());
-  
-  //   this.api.updateUser(userId, user).subscribe(
-  //     () => {
-  //       console.log('User updated successfully.');
-  //     },
-  //     (error: any) => {
-  //       console.error('Error updating user:', error);
-  //     }
-  //   );
-  // }
-  
   loadSubtasks(taskId: number): void {
     const userId: Guid = Guid.parse(this.auth.getUserId());
     this.taskService.getSubTasks(userId, taskId).subscribe(
@@ -134,10 +120,11 @@ export class DashboardComponent implements OnInit {
     task.bookmark = !task.bookmark;
   }
   
-
-  deleteTask(task: Task): void {
+deleteTask(task: Task): void {
+  const confirmDelete = confirm('Are you sure you want to delete this task?');
+  if (confirmDelete) {
     const userId: Guid = Guid.parse(this.auth.getUserId());
-    this.taskService.deleteTask(userId,task.id).subscribe(
+    this.taskService.deleteTask(userId, task.id).subscribe(
       () => {
         console.log('Task deleted successfully.');
         this.loadTasks(userId);
@@ -149,12 +136,16 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
-  deleteSubTask(subTask : Subtask,taskId: number): void {
+}
+
+deleteSubTask(subTask: Subtask, taskId: number): void {
+  const confirmDelete = confirm('Are you sure you want to delete this subtask?');
+  if (confirmDelete) {
     const userId: Guid = Guid.parse(this.auth.getUserId());
     const subTaskId = subTask.id;
-    this.taskService.deleteSubTask(userId,taskId,subTaskId).subscribe(
-      ()=> {
-        console.log('subtask deleted successfully!');
+    this.taskService.deleteSubTask(userId, taskId, subTaskId).subscribe(
+      () => {
+        console.log('Subtask deleted successfully!');
         this.loadSubtasks(taskId);
         this.router.navigate(['dashboard']);
       },
@@ -164,6 +155,15 @@ export class DashboardComponent implements OnInit {
       }
     );
   }
+}
+  editSubTask(subTask: Subtask, taskId: number): void {
+    const userId: Guid = Guid.parse(this.auth.getUserId());
+    const subTaskId = subTask.id;
+  
+    //const taskId = task.id;
+    this.router.navigate(['dashboard/edit-subtask/', subTaskId,taskId]);
+  }
+  
   onSubmit(): void {
     const userId: Guid = Guid.parse(this.auth.getUserId());
     

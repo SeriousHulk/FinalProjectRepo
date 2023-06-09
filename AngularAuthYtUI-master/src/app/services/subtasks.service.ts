@@ -29,7 +29,7 @@ export class SubtasksService {
     const url = `${this.apiUrl}/user/${userId}/tasks/${taskId}/subtasks/${subTaskId}`;
     return this.http.put<Subtask>(url, subTask);
   }
-  getSubTaskById(userId: Guid, taskId: number, subTaskId: number, subTask: Subtask):Observable<any>{
+  getSubTaskById(userId: Guid, taskId: number, subTaskId: number):Observable<any>{
     const url = `${this.apiUrl}/user/${userId}/tasks/${taskId}/subtasks/${subTaskId}`;
     return this.http.get(url);
   }

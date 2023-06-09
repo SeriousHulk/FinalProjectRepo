@@ -74,14 +74,14 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col"></th>
+                <th scope="col">pin</th>
                 <th scope="col">#</th>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Category</th>
                 <th scope="col">isCompleted</th>
                 <th scope="col">Actions</th>
-                <th scope="col"></th>
+                <th scope="col" style="padding-left: 3em;"> <span class="fa fa-eye"></span></th>
                 <th scope="col">+subTask</th>
               </tr>
             </thead>
@@ -105,7 +105,7 @@
                   </td>
                   <td>
                     <a [routerLink]="'add-subtask/' + task.id" style="color: green; font-weight: bold;">
-                      <i class="fa-solid fa-plus"></i>
+                      <i class="fa fa-plus"></i>
                     </a>
                   </td>
                 </ng-container>
@@ -143,8 +143,8 @@
                         <br>
                         <span style="color: rgb(64, 56, 56);">{{subtask.description}}</span>
                         <div>
-                          <button class="fa fa-edit btn btn-secondary" style="color: blanchedalmond;" (click)="deleteSubTask(subtask,showSubtasksForTask)"></button>
-                          <button class="fa fa-trash btn btn-danger" style="color: blanchedalmond;" (click)="deleteSubTask(subtask,showSubtasksForTask)"></button>
+                          <button type="button" class="fa fa-edit btn btn-secondary" style="color: rgb(244, 241, 236);" (click)="editSubTask(subtask,showSubtasksForTask)"></button>
+                          <button type="button" class="fa fa-trash btn btn-danger" style="color: rgb(247, 244, 239);" (click)="deleteSubTask(subtask,showSubtasksForTask)"></button>
                           <!-- <span><a routerLink="edit-subtask/{{subtask.id}}" style="color: green;"><i class="fas fa-edit"></i></a></span> -->
                           <!-- <span><a routerLink="delete-subtask/{{subtask.id}}" style="color: Red;"><i class="fa fa-trash"></i></a></span>     -->
                         </div>

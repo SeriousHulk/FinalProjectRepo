@@ -8,7 +8,7 @@ import { TaskComponent } from '../app/task/task.component';
 import { UserTasksComponent } from './user-tasks/user-tasks.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { AddSubTaskComponent } from './components/sub-task/add-subtask/add-subtask.component';
-import { UpdateSubTaskComponent } from './components/sub-task/edit-subtask/edit-subtask.component';
+import { EditSubtaskComponent } from './components/sub-task/edit-subtask/edit-subtask.component';
 
 
 const routes: Routes = [
@@ -20,8 +20,8 @@ const routes: Routes = [
   { path: 'tasks/edit/:id', component:EditTaskComponent},
   { path: 'tasks', component: UserTasksComponent },
   { path: 'dashboard/add-subtask/:id', component:AddSubTaskComponent},
-  { path: 'dashboard/edit-subtask/:id', component:UpdateSubTaskComponent},
-  { path: 'dashboard/delete-subtask/:id', component:UpdateSubTaskComponent}
+  { path: 'dashboard/edit-subtask/:id/:taskId', component:EditSubtaskComponent},
+  //{ path: 'dashboard/delete-subtask/:id', component:UpdateSubTaskComponent}
 ];
 
 @NgModule({

@@ -14,7 +14,8 @@ import { UserTasksComponent } from './user-tasks/user-tasks.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { AddSubTaskComponent } from './components/sub-task/add-subtask/add-subtask.component';
 import { ShowTasksComponent } from './components/task/show-tasks/show-tasks.component';
-import { UpdateSubTaskComponent } from './components/sub-task/edit-subtask/edit-subtask.component';
+import { EditSubtaskComponent } from './components/sub-task/edit-subtask/edit-subtask.component';
+//import { UpdateSubTaskComponent } from './components/sub-task/edit-subtask/edit-subtask.component';
 import { DeleteSubtaskComponent } from './components/sub-task/delete-subtask/delete-subtask.component'
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DeleteSubtaskComponent } from './components/sub-task/delete-subtask/del
     EditTaskComponent,
     AddSubTaskComponent,
     ShowTasksComponent,
-    UpdateSubTaskComponent,
+    EditSubtaskComponent,
+    //UpdateSubTaskComponent,
     DeleteSubtaskComponent
   ],
   imports: [

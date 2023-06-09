@@ -3,11 +3,12 @@ export interface Subtask {
     name: string;
     description: string;
     isCompleted: boolean;
-    taskPriority:Priority;
+    //taskPriority:Priority;
+    taskId :number;
   }
-  export enum Priority {
-    Urgent = 'Urgent',
-    High = 'High',
-    Medium = 'Medium',
-    Low = 'Low'
-  }
+  // export enum Priority {
+  //   Urgent = 'Urgent',
+  //   High = 'High',
+  //   Medium = 'Medium',
+  //   Low = 'Low'
+  // }

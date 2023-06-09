@@ -1,39 +1,34 @@
-<div class="outer" *ngIf="subTaskDetail">
-    <div class="container">
-      <div class="row">
-        <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
-          <div class="panel border bg-white">
-            <div class="panel-heading">
-              <h3 class="pt-3 font-weight-bold">Update SubTask Details</h3>
-            </div>
-            <div class="panel-body p-3">
-                <form [formGroup]="updateSubTask" (ngSubmit)="onUpdate()">
-                <input type="hidden">
-                
-                <!-- SubTask Name -->
-                <div class="form-group pt-3">
-                  <div class="input-field" [class.error]="updateSubTask.controls['Name'].dirty && updateSubTask.hasError('required','Name')">
-                    <span class="fa fa-tasks p-2"></span>
-                    <input type="text" id="subTaskName" formControlName="Name" placeholder="SubTask Name" [(ngModel)]="subTaskDetail.name" required>
-                  </div>
-                  <small *ngIf="updateSubTask.controls['Name'].dirty && updateSubTask.hasError('required','Name')" class="text-danger">*SubTask Name Required</small>
+<div class="outer">
+  <div class="container">
+    <div class="row">
+      <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+        <div class="panel border bg-white">
+          <div class="panel-heading">
+            <h3 class="pt-3 font-weight-bold">Edit SubTask</h3>
+          </div>
+          <div class="panel-body p-3">
+            <form (ngSubmit)="updateSubTask(subTask.id)">
+              <!-- SubTask Name -->
+              <div class="form-group pt-3">
+                <div class="input-field">
+                  <span class="fa fa-tasks p-2"></span>
+                  <input type="text" id="subTaskName" [(ngModel)]="subTask.name" name="subTaskName" placeholder="SubTask Name" required>
                 </div>
-    
-                <!-- SubTask Description -->
-                <div class="form-group pt-3">
-                  <div class="input-field" [class.error]="updateSubTask.controls['Description'].dirty && updateSubTask.hasError('required','Description')">
-                    <span class="fa fa-tasks p-2"></span>
-                    <input type="text" id="subTaskDescription" formControlName="Description" placeholder="SubTask Description" [(ngModel)]="subTaskDetail.description" required>
-                  </div>
-                  <small *ngIf="updateSubTask.controls['Description'].dirty && updateSubTask.hasError('required','Description')" class="text-danger">*SubTask Description Required</small>
+              </div>
+  
+              <!-- SubTask Description -->
+              <div class="form-group pt-3">
+                <div class="input-field">
+                  <span class="fa fa-info-circle p-2"></span>
+                  <textarea id="subTaskDescription" [(ngModel)]="subTask.description" name="subTaskDescription" placeholder="SubTask Description" required></textarea>
                 </div>
-    
-                <button type="submit" class="btn btn-secondary btn-black mt-4 w-100">Update</button>
-              </form>
-            </div>
+              </div>
+  
+              <button type="submit" class="btn btn-primary btn-block mt-4 w-100">Update SubTask</button>
+            </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
